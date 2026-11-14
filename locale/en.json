@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Rules",
+    "description": "Edit the global rules injected into the system prompt right from Settings. Stored in a marked block of $DSH_HOME/AGENTS.md and applied to every session on save."
+  }
+}

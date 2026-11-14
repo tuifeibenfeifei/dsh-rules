@@ -1,0 +1,49 @@
+{
+  "name": "dsh-rules",
+  "version": "0.2.0",
+  "displayName": "DSH 规则",
+  "description": "在设置页直接编辑注入系统提示词的规则：支持具名块（全局用 $DSH_HOME/AGENTS.md，工作区用项目根的 AGENTS.md），按块独立保存与删除，保存后立即生效。",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "client.js",
+    "cordis.patch.yml",
+    "locale",
+    "icon.svg",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "rules",
+    "agents-md",
+    "settings"
+  ],
+  "license": "MIT",
+  "engines": {
+    "dsh": ">=0.2.1-0"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-locale",
+        "@deepseek-ai/dsh-client-ui-settings"
+      ]
+    }
+  }
+}
