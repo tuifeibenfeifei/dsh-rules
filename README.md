@@ -1,7 +1,14 @@
 # dsh-rules · DSH 规则设置页
 
+[![test](https://github.com/tuifeibenfeifei/dsh-rules/actions/workflows/test.yml/badge.svg)](https://github.com/tuifeibenfeifei/dsh-rules/actions/workflows/test.yml)
+[![license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![dsh](https://img.shields.io/badge/dsh-%3E%3D0.2.1--0-8b5cf6.svg)](https://github.com/deepseek-ai/deepseek-harness)
+
 在 DSH **设置页**新增一个「规则」分区，直接编辑规则文本，写进 `AGENTS.md` 的具名标记块。
 保存后**下一次请求立即生效**，无需重启会话。
+
+> 配套插件：[dsh-rules-guard](https://github.com/tuifeibenfeifei/dsh-rules-guard) —— 把「不可逆操作前确认」这类规则变成工具层硬拦截。
+
 
 规则分三层叠加，这是 DSH 自己的加载顺序，不是本插件发明的：
 
