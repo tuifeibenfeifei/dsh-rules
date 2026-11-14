@@ -1,0 +1,43 @@
+name: test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        # 跨平台验证：这个插件要能在 Windows / macOS / Linux 上都工作。
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        node: ['22', '24']
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: 语法检查
+        run: |
+          node --check lib/index.js
+          node --check lib/blocks.mjs
+          node --check lib/templates.js
+          node --check client.js
+
+      - name: 运行测试
+        run: |
+          node test/blocks.test.mjs
+          node test/routes.test.mjs
+          node test/templates.test.mjs
+          node test/markblock.test.mjs
+
+      - name: 检查模板不含个人内容
+        # 守门员：有人往模板里塞私货，CI 直接失败。
+        run: node test/generic-check.mjs
